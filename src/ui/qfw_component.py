@@ -646,7 +646,7 @@ class InfoPage(ScrollArea):
         self.infoGroup = SettingCardGroup("关于", self.view)
 
         self.githubCard = HyperlinkCard(
-            "https://github.com/SurinChi/random-integer-generator",
+            "https://github.com/SurinChi/RandomNumberGenerator",
             "前往GitHub",
             self.fi.GITHUB,
             "项目GitHub",
@@ -700,7 +700,7 @@ class InfoPage(ScrollArea):
 
         self.lisenceGroup = SettingCardGroup("许可证", self.view)
         self.lisenceCard = HyperlinkCard(
-            "https://github.com/SurinChi/random-integer-generator?tab=GPL-3.0-1-ov-file",
+            "https://github.com/SurinChi/RandomNumberGenerator?tab=GPL-3.0-1-ov-file",
             "查看",
             self.fi.VPN,
             "GPL-3.0",
@@ -751,7 +751,7 @@ class InfoPage(ScrollArea):
         self.setWidget(self.view)
 
     def _on_check_clicked(self):
-        QDesktopServices.openUrl("https://github.com/SurinChi/random-integer-generator/releases")
+        QDesktopServices.openUrl("https://github.com/SurinChi/RandomNumberGenerator/releases")
 
     def _on_donate_clicked(self):
         msg = MessageBox("捐赠提示", "请确认您已经年满18周岁，未满18周岁请勿捐赠。", self)
