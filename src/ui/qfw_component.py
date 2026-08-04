@@ -161,7 +161,7 @@ class HomePage(QFrame):
             current_text = self.current_lineEdit.text()                            # 删除输入框的最后一个字符
             if current_text:                                                       # 如果输入框不为空
                 self.current_lineEdit.setText(current_text[:-1])                   # 去掉最后一个字符
-        elif num_str == "清空":
+        elif num_str == "清除":
             self.current_lineEdit.clear()                                          # 删除输入框的所有字符
         else:
             self.current_lineEdit.setText(self.current_lineEdit.text() + num_str)  # 插入数字
