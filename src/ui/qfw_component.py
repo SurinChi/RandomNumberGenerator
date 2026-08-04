@@ -157,11 +157,11 @@ class HomePage(QFrame):
             self.current_lineEdit = self.min_lineEdit
             self.min_lineEdit.setFocus()
 
-        if num_str == "⌫ Backspace":                                              # 与按钮的文本保持一致
+        if num_str == "⌫ 删除":                                              # 与按钮的文本保持一致
             current_text = self.current_lineEdit.text()                            # 删除输入框的最后一个字符
             if current_text:                                                       # 如果输入框不为空
                 self.current_lineEdit.setText(current_text[:-1])                   # 去掉最后一个字符
-        elif num_str == "Clear":
+        elif num_str == "清空":
             self.current_lineEdit.clear()                                          # 删除输入框的所有字符
         else:
             self.current_lineEdit.setText(self.current_lineEdit.text() + num_str)  # 插入数字
