@@ -1,0 +1,17 @@
+{
+    "app_path":"",
+    "settings_path":"config/settings.json",
+    "icon_path":"icons/",
+    "avatar_icon_path" : "icons/avatar.png",
+    "avatar_icon_path_2" : "icons/avatar_2.png",
+    "wechat_icon":"icons/donate_wechat_icon.png",
+    "alipay_icon":"icons/donate_alipay_icon.png",
+    "wechat_qr_path":"icons/donate_wechat_qr.png",
+    "alipay_qr_path":"icons/donate_alipay_qr.png",
+    "main_icon_path" : "icons/main_icon.png",
+    "donate_window_icon_path" : "icons/donate_window.png",
+    "log_path":"logs/",
+    "history_path":"history/",
+    "yuanshen_icon_path":"icons/yuanshen.png",
+    "yuanshen_cloud_icon_path":"icons/yuanshen_cloud.png"
+}

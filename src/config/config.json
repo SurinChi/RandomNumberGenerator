@@ -1,0 +1,20 @@
+{
+    "Generate": {
+        "DecimalPrecision": 2,
+        "DefaultMode": "整数 不重复",
+        "DefaulNotificationt": "应用弹窗显示"
+    },
+    "History": {
+        "EnableHistory": true,
+        "HistoryDir": "history"
+    },
+    "QFluentWidgets": {
+        "FontFamilies": [
+            "Segoe UI",
+            "Microsoft YaHei",
+            "PingFang SC"
+        ],
+        "ThemeColor": "#ff009faa",
+        "ThemeMode": "Light"
+    }
+}

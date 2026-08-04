@@ -1,0 +1,11 @@
+{
+    "last_save":"2026-06-20 09:08:28",
+    "is_first_use":true,
+    "int_modes" : ["unique", "repeat"],
+    "f_modes" : ["unique_float", "repeat_float"],
+    "default_mode":"unique",
+    "current_mode":"unique",
+    "record_history":false,
+    "pop_result":true,
+    "result_with_parameters":false
+}
