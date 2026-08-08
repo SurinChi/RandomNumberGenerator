@@ -65,6 +65,7 @@ if __name__ == "__main__":
         alipay_qr_path = SRC_DIR / path_dict.get("alipay_qr_path")
         yuanshen_icon_path = SRC_DIR / path_dict.get("yuanshen_icon_path")
         yuanshen_cloud_icon_path = SRC_DIR / path_dict.get("yuanshen_cloud_icon_path")
+        bs_icon_path = SRC_DIR / path_dict.get("bs_icon_path")
 
         history_mgr = HistoryManager(SRC_DIR / path_dict.get("history_path", "history/"), Timer)
 
@@ -79,6 +80,7 @@ if __name__ == "__main__":
             yuanshen_cloud_icon_path,
             wechat_qr_path,
             alipay_qr_path,
+            bs_icon_path,
             [CountZeroError, CountFloatError, InputValueError, ValueRangeException],
             Validator,
             Convertor,

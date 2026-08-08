@@ -13,5 +13,6 @@
     "log_path":"logs/",
     "history_path":"history/",
     "yuanshen_icon_path":"icons/yuanshen.png",
-    "yuanshen_cloud_icon_path":"icons/yuanshen_cloud.png"
+    "yuanshen_cloud_icon_path":"icons/yuanshen_cloud.png",
+    "bs_icon_path":"icons/backspace.png"
 }

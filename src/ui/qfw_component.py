@@ -14,10 +14,11 @@ from pathlib import Path
 
 
 class InputPage(QFrame):
-    def __init__(self, icons, parent=None):
+    def __init__(self, icons, bs_icon, parent=None):
         super().__init__(parent=parent)
         self.setObjectName("inputPage")
         self.icons = icons
+        self.bs_icon = bs_icon
         self.buttons = []
         self._init_ui()
 
@@ -27,16 +28,14 @@ class InputPage(QFrame):
         self.layout.setVerticalSpacing(20)
         self.layout.setHorizontalSpacing(10)
 
-        self.clear_btn = PrimaryPushButton("清除", icon=self.icons.CLOSE)
-        self.clear_btn.setFocusPolicy(Qt.NoFocus)
+        self.clear_btn = PrimaryPushButton(self.icons.CLOSE, "清除")
         self.clear_btn.setFixedWidth(125)  # 可适当加宽，便于识别
-        self.buttons.append(self.clear_btn)
         self.layout.addWidget(self.clear_btn)
 
-        self.backspace_btn = PushButton("⌫ 删除")
+        self.backspace_btn = PushButton(self.bs_icon, "删除")
         self.backspace_btn.setFocusPolicy(Qt.NoFocus)
         self.backspace_btn.setFixedWidth(125)  # 可适当加宽，便于识别
-        self.buttons.append(self.backspace_btn)
+        # self.buttons.append(self.backspace_btn)
         self.layout.addWidget(self.backspace_btn)
 
         for i in range(0, 10):
@@ -58,10 +57,11 @@ class HomePage(QFrame):
 
     generate_requested = Signal(dict)
 
-    def __init__(self, cfg, icon, parent=None):
+    def __init__(self, cfg, icon, bs_icon, parent=None):
         super().__init__()
         self.setObjectName("homePage")
         self.icon = icon
+        self.bs_icon = bs_icon
         self.cfg = cfg
         self.parent = parent
         self._init_ui()
@@ -71,11 +71,13 @@ class HomePage(QFrame):
 
         # 直接连接 InputPage 的按钮点击事件到本地的槽函数
         self.input_page.connect_all_buttons(self._on_num_clicked)
+        self.input_page.clear_btn.clicked.connect(self._on_clear_clicked)
+        self.input_page.backspace_btn.clicked.connect(self._on_bs_clicked)
 
     def _init_ui(self):
         # 创建控件
 
-        self.input_page = InputPage(self.icon, self)
+        self.input_page = InputPage(self.icon, self.bs_icon, self)
         # Layouts
         self.hLayout = QHBoxLayout(self)
         self.vLayout = QVBoxLayout()
@@ -150,22 +152,32 @@ class HomePage(QFrame):
             elif obj is self.count_lineEdit:
                 self.current_lineEdit = self.count_lineEdit
         return super().eventFilter(obj, event)
-    
+
+    def _on_bs_clicked(self):                                                   # bs: backspace
+        if self.current_lineEdit is None:
+            self.current_lineEdit = self.min_lineEdit
+            self.min_lineEdit.setFocus()
+
+        current_text = self.current_lineEdit.text()
+        if current_text:                                                        # 如果输入框不为空
+            self.current_lineEdit.setText(current_text[:-1])                    # 设置为第0:-1位
+        # 确保光标在末尾，并保持焦点
+        self.current_lineEdit.end(False)
+        self.current_lineEdit.setFocus()
+
+    def _on_clear_clicked(self):
+        self.current_lineEdit.clear()                                           # 删除输入框的所有字符
+        # 确保光标在末尾，并保持焦点
+        self.current_lineEdit.end(False)
+        self.current_lineEdit.setFocus()
+
     def _on_num_clicked(self, num_str: str):
         """直接处理数字按钮点击"""
         if self.current_lineEdit is None:
             self.current_lineEdit = self.min_lineEdit
             self.min_lineEdit.setFocus()
-
-        if num_str == "⌫ 删除":                                              # 与按钮的文本保持一致
-            current_text = self.current_lineEdit.text()                            # 删除输入框的最后一个字符
-            if current_text:                                                       # 如果输入框不为空
-                self.current_lineEdit.setText(current_text[:-1])                   # 去掉最后一个字符
-        elif num_str == "清除":
-            self.current_lineEdit.clear()                                          # 删除输入框的所有字符
-        else:
-            self.current_lineEdit.setText(self.current_lineEdit.text() + num_str)  # 插入数字
-
+        
+        self.current_lineEdit.setText(self.current_lineEdit.text() + num_str)  # 插入数字
         # 确保光标在末尾，并保持焦点
         self.current_lineEdit.end(False)
         self.current_lineEdit.setFocus()
@@ -775,3 +787,10 @@ class InfoPage(ScrollArea):
         window.addSubInterface(wechat, self.wechat_icon, "微信")
         window.addSubInterface(alipay, self.alipay_icon, "支付宝")
         window.show()
+
+class StudentPickPage(QFrame):
+    def __init__(
+            self,
+            parent
+        ):
+        super().__init__(self, parent=parent)

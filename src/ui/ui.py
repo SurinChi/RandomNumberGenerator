@@ -49,6 +49,7 @@ class MainWindowBase(MSFluentWindow):
             yuanshen_cloud_icon_path: str,
             wechat_qr_path,
             alipay_qr_path,
+            bs_icon_path,
             config,
             history_mgr,
             version="0.0.0",
@@ -64,13 +65,19 @@ class MainWindowBase(MSFluentWindow):
         self.alipay_icon = QIcon(str(alipay_icon_path))
         self.yuanshen_icon = QIcon(str(yuanshen_icon_path))
         self.yuanshen_cloud_icon = QIcon(str(yuanshen_cloud_icon_path))
+        self.bs_icon = QIcon(str(bs_icon_path))
         self.version = version
 
         # oprations
         self._init_args()
         
 
-        self.homePage = HomePage(config, fi, self)
+        self.homePage = HomePage(
+            config,
+            fi,
+            self.bs_icon,
+            self
+        )
         self.historyPage = HistoryPage(config, history_mgr, self)
         self.settingsPage = SettingsPage(config, fi, self)
         self.infoPage = InfoPage(
@@ -139,6 +146,7 @@ class MainWindow(MainWindowBase):
             yuanshen_cloud_icon,
             wechat_qr_path,
             alipay_qr_path,
+            bs_icon_path,
             exceptions: list,
             validator,
             convertor,
@@ -159,6 +167,7 @@ class MainWindow(MainWindowBase):
             yuanshen_cloud_icon,
             wechat_qr_path,
             alipay_qr_path,
+            bs_icon_path,
             config,
             history_mgr,
             version
